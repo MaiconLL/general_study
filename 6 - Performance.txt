@@ -1,0 +1,8 @@
+
+
+Se eu quiser melhorar a performance de uma consulta, primeiro verifico se é possível modificá-la, 
+digamos criando uma nova tabela para modificar o filtro ou o join. 
+Se eu ver que é possível e faz sentido, eu faço isso. 
+Do contrario parto pra necessidade e possibilidade de criar um índice. 
+Tento aplicar essas duas premissas ou no minimo a segunda. 
+Além disso, verifico se não há a possibilidade de paginar o recordset caso o problema de lentidão seja consumo de RAM.

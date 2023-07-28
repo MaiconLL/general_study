@@ -1,0 +1,5 @@
+
+Índices são criados quando há a necessidade de otimizar uma consulta que possui um filtro indexável.
+A vantagem é aumento de performance, a desvantagem é custo na inserção dos registros e aumento do tamanho do banco de dados visto que
+um indice compõe uma "segunda tabela" que possui os valores do indice e o endereço de memória do registro, 
+desse modo é possível aplicar um algoritmo como o binary tree para checar menos registros do que varrer o banco inteiro testando registro a registro.

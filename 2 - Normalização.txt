@@ -1,0 +1,88 @@
+ Normalização é um processo em bancos de dados relacionais cuja ideia é minimizar a redundância
+ e a dependência de dados estruturando-os de maneira lógica e eficiente. 
+ A normalização é feita através de regras conhecidas como formas normais. 
+ Cada forma normal é um conjunto de condições que uma tabela de banco de dados deve cumprir para ser considerada "normalizada". A seguir as formas normais:
+
+ Primeira Forma Normal (1NF): Uma tabela está na 1NF se:
+	-todos os seus atributos contêm apenas valores atômicos, ou seja, cada valor em cada coluna de uma tabela é indivisível. 
+		Errado: Codigo|Nome|Bairro_Rua|Nascimento
+		Certo: Codigo|Nome|Bairro|Rua|Nascimento
+	-todos os valores em uma coluna devem ser do mesmo tipo (por exemplo, inteiro, string, etc.), e cada coluna deve ter um nome único.
+		Embora os próprios bancos resolvam isso impedindo criação de multiplos campos com mesmo nome ou tipos diferentes de valores dentro da mesma coluna
+		a 1NF é um conceito teórico onde devem ser especificadas todas as restrições.
+	-não deve ser possível ter mais de um registro com a mesma combinação de valores para todas as colunas.
+		Normalmente se resolve isso com a adição de uma chave primária, simples ou composta.
+
+ Segunda Forma Normal (2NF): Uma tabela está na 2NF se:
+	-está na 1NF
+	-todos os seus atributos não-chave são totalmente dependentes da chave primária inteira.
+		Isso significa que, todas as colunas da tabela que não são chave primária, devem ser referentes a chave primária inteira, não só parte dela.
+		Por exemplo, uma tabela que possua informações de Venda, possui os campos Vendedor_Id e Produto_Id como chave primária. Além disso possui os campos
+		Descricao_Produto, Nome_Vendedor. O campo Descricao_Produto é referente ao campo Produto_Id, o campo Nome_Vendedor é referente ao campo Vendedor_Id.
+		Essa tabela não está normalizada na 2NF visto que os campos não chave não são referentes a toda chave primária.
+		Para resolver isso, deveria ser dividido em 3 tabelas, uma que armazena Vendedor_Id e Nome_Vendedor, uma que armazena Produto_Id e Descricao_Produto e por fim
+		uma que armazena Vendedor_Id e Produto_Id apenas.
+
+ Terceira Forma Normal (3NF): Uma tabela está na 3NF se:
+	-está na 2NF
+	-não possui dependências transitivas. 
+		Isso significa que as colunas não chave, devem ser diretamente dependentes da chave primária inteira e não dependentes de outras colunas que são dependentes da chave primária.
+		Por exemplo, digamos que eu tenha uma tabela Clientes que possua as colunas Codigo, Nome, Nascimento, Endereco, Cidade.
+		O Campo Cidade não depende diretamente de cliente, mas sim de Endereco que é dependente de cliente, isso que é uma dependência transitiva.
+		Para resolver isso, deve-se criar uma tabela separada que armazena informações de endereço e ligar essa tabela com a tabela clientes que terá um campo Endereco_Id.
+
+ Quarta Forma Normal (4NF): Uma tabela está na 4NF se:
+	-está na 2NF
+	-Não possui dependências multi valuadas.
+		Isso significa que, se uma das colunas da tabela pode ter mais de um valor dependente da chave primária inteira, ele esta violando a 4NF.
+		Basicamente a criação de uma relação one to many resolve esse problema. A teoria diz apenas que, se eu tiver o seguinte exemplo. 
+		Tabela Clientes, Colunas Codigo, Nome, Documento, Dependentes. Eu posso estar violando a 4NF pois para cada documento ou dependente, eu precisaria estar criando
+		outro registro na tabela com redundância nas informações de Codigo e Nome.
+		Isso se resolve criando uma tabela separada para Documento e uma para Dependente, ambas possuindo o Codigo do cliente como chave estrangeira.
+
+
+ Quinta Forma Normal (5NF) ou Projeção-Join Normal Form (PJNF): Uma tabela está na 5NF ou PJNF se:
+	-está na 4NF
+	-cada dependência de join na tabela é implicada por suas chaves candidatas. Uma dependência de join é uma interdependência entre linhas de uma tabela.
+		Resumidamente, se, ao decompor uma tabela em outras buscando reduzir a redundancia, houver uma possível perda de informação, essa tabela não está na 5NF.
+		Esse tipo de coisa pode acontecer quando se decompõem duas ou mais informações dentro da tabela em tabelas separadas, mas que, para o proposito da estrutura original,
+		ocasiona em perda de informação devido ao fato de que é necessário combinar essas informações decompostas com a chave inteira para se obter as informações.
+		Exemplo, se eu tenho uma tabela Representantes que possui as colunas Codigo, Nome, Fabricante, Produto, eu poderia decompor essa tabela em tres, armazenando separadamente
+		as informações de fabricante numa tabela, produto em outra e representante em outra. Porém, se eu desejar saber, qual produto de qual fabricante o representante vende,
+		eu posso ter perda informação ao ligar com as tabelas decompostas visto que a informação é composta pelo conjunto total de fabricante e produto e não apenas representante/fabricante 
+		ou representante/produto.
+
+ Sexta Forma Normal (6NF): 
+	 Principalmente relevante para bancos de dados que lidam com histórico de versões de dados (como dados temporais ou históricos), a 6NF trata de como lidar com intervalos de tempo e data.
+	 A 6NF trata da normalização de dados que têm múltiplas dimensões de tempo. 
+	 Isso pode ocorrer quando você tem uma série de eventos que ocorrem em momentos diferentes e deseja armazenar quando cada evento aconteceu.
+	 Digamos que temos uma tabela chamada PrecoProduto que registra o histórico de preços de diferentes produtos. A tabela pode ter o seguinte aspecto:
+
+		ID_Produto	Nome_Produto	Data_Inicio	Data_Fim	Preco
+		1	Produto A	2023-01-01	2023-06-30	50
+		1	Produto A	2023-07-01	2023-12-31	60
+		2	Produto B	2023-01-01	2023-06-30	100
+		2	Produto B	2023-07-01	2023-12-31	110
+	Neste caso, os preços dos produtos mudam com o tempo, e queremos manter um registro dessas mudanças. 
+	No entanto, a tabela não está na 6NF, porque cada linha representa um intervalo de tempo (do Data_Inicio ao Data_Fim) durante o qual o preço foi válido.
+
+	Para normalizar essa tabela na 6NF, podemos dividir a tabela em duas: uma tabela Produto e uma tabela HistoricoPreco:
+
+		Tabela Produto:
+
+		ID_Produto	Nome_Produto
+		1	Produto A
+		2	Produto B
+		Tabela HistoricoPreco:
+
+		ID_Historico	ID_Produto	Data_Inicio	Data_Fim	Preco
+		1	1	2023-01-01	2023-06-30	50
+		2	1	2023-07-01	2023-12-31	60
+		3	2	2023-01-01	2023-06-30	100
+		4	2	2023-07-01	2023-12-31	110
+	Agora, cada linha na tabela HistoricoPreco representa um evento único (uma mudança de preço), e a tabela Produto 
+	contém os detalhes do produto que não mudam com o tempo. Assim, as tabelas agora estão na 6NF.
+	Note que a normalização para 6NF geralmente implica a introdução de intervalos de tempo ou timestamps nas tabelas.
+
+ 
+

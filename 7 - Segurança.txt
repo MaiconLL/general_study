@@ -1,0 +1,6 @@
+
+
+
+Criaria uma camada de abstração para "limpar" o comando, utilizando os parametros de um sqlcommand. 
+Isso se chama consulta parametrizada. 
+Um bom exemplo é o uso do Dapper no sistema que tem embutido isso na lógica dele, o que resolve.

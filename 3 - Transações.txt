@@ -1,0 +1,10 @@
+Uma transação é um conjunto de operações que formam uma única unidade de trabalho. 
+As propriedades ACID são:
+
+Atomicidade: Garante que todas as operações dentro da transação sejam completadas com sucesso; caso contrário, as operações são desfeitas (rollback).
+
+Consistência: Assegura que os dados devem atender a todas as regras de validação. Em uma transação bem-sucedida, o estado do banco de dados evolui de um estado consistente para outro.
+
+Isolamento: Assegura que uma transação em andamento não seja interferida por nenhuma outra transação.
+
+Durabilidade: Assegura que uma vez que uma transação tenha sido confirmada (committed), ela permanecerá assim, mesmo em caso de falha do sistema, falhas de energia, etc.

@@ -1,0 +1,6 @@
+NoSQL é não relacional. 
+De fato, isso traz uma vantagem que é ser totalmente indexado visto que por exemplo no caso do Dynamodb
+tu tem a possibilidade de pesquisar pelo hash key e sort key apenas. 
+No entanto, quando se tem necessidade de organizar uma estrutura muito grande de dados, o ideal ainda é SQL. 
+NoSQL é especialmente útil quando você precisa de grande escalabilidade ou quando seus dados não se encaixam bem em modelos tabulares.
+Cabe pesar prós e contras visando performance/organização.

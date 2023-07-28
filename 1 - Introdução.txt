@@ -1,0 +1,21 @@
+Sintaxe de SQL é o padrão, insert, delete, update, select(joins e variações).
+Trigger(Functions)/Procedures/Generators(Sequences).
+
+
+Conhecimentos avançados:
+
+	Normalização: Compreender pelo menos as três primeiras formas normais (1NF, 2NF e 3NF) e por que elas são importantes para a modelagem de dados.
+		Vide arquivo '2 - Normalização.txt'
+
+	Transações: Compreender o que são transações em um banco de dados e por que são importantes.
+		Ser capaz de descrever os quatro principais atributos de uma transação (propriedades ACID). Vide Arquivo '3 - Transações.txt'
+
+	Índices: Compreender como funciona e como você decide quando e onde criar índices.
+		Compreender quais são as vantagens e desvantagens da indexação. Vide '4 - Índices.txt'
+
+	SQL vs NoSQL: Compreender quais são as principais diferenças entre bancos de dados SQL e NoSQL.
+		Ser capaz de definir cenários de quando é mais apropriado usar NoSQL ou SQL. Vide '5 - SQLvsNoSQL.txt'
+
+	Performance: Ser capaz de perceber estratégias para identificar e resolver o problema de performance. Vide '6 - Performance.txt'
+
+	Segurança: Ser capaz de perceber como proteger um banco de dados contra injeção SQL. Vide '7 - Segurança.txt'

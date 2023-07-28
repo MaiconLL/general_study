@@ -1,0 +1,113 @@
+﻿
+
+Testes unitários, de integração e UAT:
+
+	Testes unitários são testes de unidades de código, ou seja, breves trechos de código que executam uma lógica do meu negócio. 
+	Por exemplo um calculo de custo especifico do meu software que recebe parametros, calcula e devolve, uma validação de um documento ou de uma regra de banco. 
+	
+	Testes de integração são testes que se concentram na interação entre diferentes partes do software.
+	Podem envolver a simulação de uma interação do usuário com a tela, mas eles não se limitam a isso. 
+	Eles também podem envolver a interação de diferentes camadas ou componentes do software, como a camada de aplicação e a camada de dados.
+
+	Testes de Aceitação do Usuário (UAT) são conduzidos pelos usuários finais, utilizando o sistema para garantir que ele possa cumprir suas tarefas
+	e fluxos de trabalho necessários no mundo real e verificar se o sistema está desenvolvido de acordo com as especificações originais.
+
+
+Testes funcionais e não funcionais: 
+	Os testes funcionais avaliam se o sistema funciona conforme o esperado, ou seja, se cumpre suas funções especificadas.
+	Testes funcionais também verificam cenários de erro e gerenciamento de exceções, não apenas os "caminhos felizes" onde tudo funciona corretamente. 
+	Os testes não funcionais, por outro lado, se concentram em aspectos do sistema que não estão relacionados à funcionalidade específica, como desempenho, segurança, usabilidade, etc.
+
+
+Técnicas de mocking:
+	Trata-se de simular dados ou dependências para que seja possível executar um teste que dependa disso mas não que necessariamente esteja testando esses dados.
+	Por exemplo, se eu tenho que testar um trecho de código que valida os dados de um cliente e para tal, a classe que possui esse teste possui
+	uma dependência obrigatória que lida com banco de dados que é um repository, é possível criar um repositório falso utilizando mocking
+	que tem um comportamento fixo visando apenas aquele teste.
+	Resumindo os mocks são usados ​​para simular o comportamento de objetos reais de maneira controlada, para que possamos testar a funcionalidade de nosso código de forma isolada.
+
+
+TDD (Test-Driven Development):
+
+	O Test-Driven Development (TDD), ou Desenvolvimento Orientado por Testes, é uma prática de desenvolvimento de software que envolve escrever 
+	testes antes de escrever o código que será testado. O processo básico do TDD é o seguinte:
+
+	Escrever um teste unitário que descreve uma característica ou comportamento desejado do sistema.
+	Executar o teste, que deve falhar porque o sistema ainda não possui essa característica.
+	Escrever o código do sistema necessário para que o teste passe.
+	Executar o teste novamente. Se passar, o código é mantido. Se falhar, o código é corrigido até que o teste passe.
+	Refatorar o código para torná-lo mais limpo, garantindo que os testes ainda passem após a refatoração.
+	Este ciclo é frequentemente descrito como "vermelho-verde-refatorar": vermelho para o teste falhando, verde para o teste passando, e refatorar o código para limpeza e manutenibilidade.
+
+
+	BDD (Behavior-Driven Development)
+
+		O Behavior-Driven Development (BDD), ou Desenvolvimento Orientado por Comportamento, é uma extensão do TDD que se concentra na colaboração 
+		entre os membros da equipe e a clareza dos requisitos do sistema. 
+		A ideia é descrever os testes em uma linguagem de alto nível, mais próxima da linguagem natural e do domínio do problema,
+		para que não-programadores (como proprietários de empresas ou stakeholders) possam entender e participar da discussão sobre o comportamento do sistema.
+
+		Em BDD, os testes (ou "especificações") são escritos antes do código, assim como em TDD, mas são escritos em um formato de história que descreve o comportamento desejado. 
+		Por exemplo, uma especificação BDD pode parecer com isto:
+
+		"Dado que eu tenho 100 reais na minha conta"
+		"Quando eu sacar 20 reais"
+		"Então eu devo ter 80 reais restantes na minha conta"
+
+		Essa abordagem ajuda a garantir que todos na equipe tenham uma compreensão clara do que o sistema deve fazer, 
+		e fornece uma linguagem comum para discutir requisitos e comportamento do sistema.
+
+
+Fuzz Testing: 
+	Este é um tipo de teste não funcional que envolve alimentar uma grande quantidade de dados aleatórios para o sistema em um esforço para fazê-lo falhar. 
+	O objetivo é descobrir problemas que só aparecem sob condições de stress ou que foram perdidos pelos testes unitários e de integração.
+
+
+Teste de Regressão: 
+
+	Trata-se de reexecutar testes de funcionalidades já testadas em versões anteriores para garantir que novas alterações ou correções
+	não quebrem funcionalidades que antes funcionavam corretamente.
+
+
+Stubs e Drivers:
+
+	Stubs são objetos fictícios que simulam o comportamento de objetos reais no código. 
+	Eles são usados em testes unitários para substituir dependências do código que está sendo testado.
+	Por exemplo, se você está testando um método que faz uma chamada para um serviço de terceiros, 
+	em vez de fazer a chamada real (o que seria lento e imprevisível), você pode usar um stub que simula a resposta do serviço.
+	Um stub é uma implementação de uma interface que possui métodos que simplesmente retornam valores fixos.
+	
+	Diferença de Mock e Stub:
+		Stubs são usados para fornecer respostas pré-definidas às chamadas de métodos feitas durante o teste. 
+		Eles são usados para testar o comportamento do código testado sem precisar lidar com as dependências do código
+		(como uma chamada a um serviço web ou acesso a um banco de dados). 
+		Em outras palavras, eles são usados para isolar o código que você está testando.
+		
+		Mocks, por outro lado, são usados não só para isolar o código que está sendo testado, mas também para verificar se o código se comporta corretamente.
+		Com um mock, você pode verificar se um método específico foi chamado (e com quais argumentos), quantas vezes foi chamado, e assim por diante.
+		Em outras palavras, um mock é como um stub, mas com capacidades adicionais de verificação.
+
+	Drivers, por outro lado, são usados em testes de integração para iniciar e controlar a execução de um componente de software que está sendo testado.
+	Eles são escritos para simular a funcionalidade de outro módulo que um módulo em teste (MiT) pode interagir.
+	Em um cenário de teste típico, um driver é usado para chamar o MiT e, em seguida, o driver valida a resposta do MiT.
+
+
+Code Coverage:
+
+	Code coverage (cobertura de código) é uma métrica que é usada para medir a quantidade de código que está sendo efetivamente testada por seus testes automatizados. 
+	Uma alta porcentagem de cobertura de código significa que a maior parte do seu código é exercitada por pelo menos um teste, o que geralmente é uma coisa boa. 
+	Isso significa que se você cometer um erro nessa parte do código, é provável que um de seus testes falhe, alertando-o sobre o problema.
+
+	Existem diferentes tipos de cobertura de código, incluindo:
+
+	Cobertura de instruções: Verifica se cada instrução (ou linha) de código foi executada.
+	Cobertura de ramos: Verifica se cada caminho possível através de uma estrutura de controle (como uma instrução if ou switch) foi executada.
+	Cobertura de condições: Verifica se cada condição booleana em uma decisão (como uma instrução if) foi avaliada para verdadeiro e falso.
+	Cobertura de caminho: Verifica se cada caminho possível de execução foi seguido. 
+	Este é o mais poderoso, mas também o mais difícil de alcançar, porque o número de possíveis caminhos pode ser muito grande.
+
+	A cobertura de código é uma métrica útil, mas também tem suas limitações. 
+	Uma alta cobertura de código não significa necessariamente que seus testes são bons. 
+	Por exemplo, seus testes podem ter uma cobertura de 100% e ainda assim não testar vários casos de borda ou comportamentos do mundo real.
+	Por outro lado, uma cobertura de 100% pode ser inalcançável ou impraticável em muitos casos. 
+	Portanto, a cobertura de código deve ser usada como uma ferramenta auxiliar, e não como uma meta em si.
