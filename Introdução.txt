@@ -1,6 +1,6 @@
 ﻿
 
-Testes unitários, de integração e UAT:
+Testes unitários, de integração e UAT: 
 
 	Testes unitários são testes de unidades de código, ou seja, breves trechos de código que executam uma lógica do meu negócio. 
 	Por exemplo um calculo de custo especifico do meu software que recebe parametros, calcula e devolve, uma validação de um documento ou de uma regra de banco. 
