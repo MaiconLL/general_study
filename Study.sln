@@ -89,6 +89,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Padrões de criação de AP
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVC", "MVC\MVC.csproj", "{C14C18FE-981B-4F84-B908-DBE9B77BC1D7}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{DE332629-BF2C-44E8-ACC5-EAFDFB57461A}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
